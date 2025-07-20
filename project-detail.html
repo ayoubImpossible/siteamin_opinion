@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Project Detail</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/vendor.css">
+
+  <style>
+    :root {
+      --bg-dark: #0f0f0f;
+      --card-dark: #242323;
+      --text-main: #f1f1f1;
+      --text-muted: #afacab;
+      --accent: #a70651;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: var(--bg-dark);
+      padding: 40px 20px;
+      color: var(--text-main);
+    }
+
+    .btn--primary {
+      background: var(--accent);
+      color: white;
+      padding: 10px 16px;
+      border: none;
+      text-decoration: none;
+      border-radius: 3px;
+      font-size: 14px;
+    }
+
+    /* FILTER BUTTONS */
+    .filter-btn {
+      background-color: transparent;
+      border: 2px solid var(--accent);
+      color: var(--accent);
+      padding: 10px 16px;
+      margin: 5px;
+      cursor: pointer;
+      border-radius: 5px;
+      font-size: 14px;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    .filter-btn:hover,
+    .filter-btn.active {
+      background-color: var(--accent);
+      color: white;
+    }
+
+    /* MAIN PROJECT SLIDESHOW */
+    .project-container {
+      display: flex;
+      flex-direction: column;
+      gap: 60px;
+      max-width: 1100px;
+      margin: 100px auto 80px;
+      position: relative;
+    }
+
+    .project-item {
+      position: relative;
+      width: 100%;
+      height: 420px;
+      border-radius: 2px;
+      overflow: hidden;
+      background-color: var(--card-dark);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+    }
+
+    .project-images {
+      width: 100%;
+      height: 100%;
+      position: relative;
+    }
+
+    .project-images img {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0;
+      transition: opacity 1s ease, transform 1s ease;
+      transform: scale(1.05);
+    }
+
+    .project-images img.active {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    .project-info {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 40%;
+      height: 100%;
+      background-color: rgba(15, 15, 15, 0.6);
+      padding: 30px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    .info-slide {
+      opacity: 0;
+      transition: opacity 1s ease;
+      position: absolute;
+    }
+
+    .info-slide.active {
+      opacity: 1;
+      position: relative;
+    }
+
+    .info-slide h2 {
+      font-size: 30px;
+      color: var(--accent);
+      margin-bottom: 12px;
+    }
+
+    .info-slide p {
+      font-size: 1rem;
+      color: var(--text-main);
+      margin-bottom: 8px;
+    }
+
+    /* HORIZONTAL SCROLL */
+    .projet-container {
+      width: 100%;
+      height: 450px;
+      display: flex;
+      flex-direction: row;
+      overflow-x: auto;
+      overflow-y: hidden;
+      gap: 10px;
+      scroll-behavior: smooth;
+      padding: 10px 0 100px;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+
+    .projet-container::-webkit-scrollbar {
+      display: none;
+    }
+
+    .sectione {
+      flex: 0 0 25%;
+      height: 100%;
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+    }
+
+    .sectione img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: filter 0.5s ease, transform 0.5s ease;
+    }
+
+    .sectione .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(10, 10, 10, 0.6);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      opacity: 0;
+      color: white;
+      padding: 20px;
+      transition: opacity 0.5s ease;
+      text-align: center;
+    }
+
+    .sectione:hover img {
+      filter: blur(2px) brightness(0.6);
+      transform: scale(1.05);
+    }
+
+    .sectione:hover .overlay {
+      opacity: 1;
+    }
+
+    @media (max-width: 768px) {
+      .sectione {
+        flex: 0 0 80%;
+      }
+
+      .project-info {
+        position: static;
+        width: 100%;
+        height: auto;
+      }
+
+      .info-slide {
+        display: none;
+        position: static;
+        opacity: 0;
+      }
+
+      .info-slide.active {
+        display: block;
+        opacity: 1;
+      }
+
+      .project-images {
+        height: 220px;
+      }
+
+      .project-item {
+        height: auto;
+        flex-direction: column;
+      }
+    }
+
+    .filter-menu {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 30px;
+}
+
+.filter-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 24px;
+  font-size: 15px;
+  border: 2px solid var(--accent);
+  background: transparent;
+  color: var(--accent);
+  border-radius: 999px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  min-width: 120px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  text-align: center;
+  appearance: none;
+}
+
+
+.filter-btn:hover,
+.filter-btn.active {
+  background-color: var(--accent);
+  color: #fff;
+  transform: scale(1.05);
+  box-shadow: 0 4px 10px rgba(167, 6, 81, 0.3);
+}
+
+
+  </style>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body>
+
+<header class="s-header">
+  <div class="s-header__logo">
+    <a href="index.html">
+      <img src="images/first_logo.svg" alt="Homepage">
+    </a>
+  </div>
+</header>
+
+<!-- MAIN PROJECT DISPLAY -->
+<div class="project-container">
+  <div class="project-item">
+    <div class="project-images" data-images='["images/2.jpg", "images/4.jpg", "images/5.jpg"]'></div>
+    <div class="project-info">
+      <div class="info-slide active">
+        <h2>Morocco Foodex</h2>
+        <p style="font-size: 20px;">Fruit Logistica 2024</p>
+        <p style="font-size: 20px;">66,000 PAX</p>
+        <p style="font-size: 20px;">Berlin</p>
+        <p style="font-size: 20px;">7–9 février 2024</p>
+      </div>
+      <div class="info-slide">
+        <h2>Slide Two</h2>
+        <p style="font-size: 20px;">Food & Trade Exhibition</p>
+        <p style="font-size: 20px;">Madrid</p>
+        <p style="font-size: 20px;">12–15 March 2024</p>
+      </div>
+      <div class="info-slide">
+        <h2>Slide Three</h2>
+        <p style="font-size: 20px;">Agro Export Event</p>
+        <p style="font-size: 20px;">Paris</p>
+        <p style="font-size: 20px;">21–23 April 2024</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FILTER MENU -->
+<div class="filter-menu">
+  <button class="filter-btn active" data-filter="all">Tous</button>
+  <button class="filter-btn" data-filter="design">Design</button>
+  <button class="filter-btn" data-filter="event">Event</button>
+  <button class="filter-btn" data-filter="digital">Digital</button>
+</div>
+
+<!-- SLIDER PROJECTS -->
+<div class="projet-container">
+  <div class="sectione" data-group="design" onclick="goToDetail('red-wheel')">
+    <img src="images/portfolio/red-wheel.jpg" alt="Red Wheel">
+    <div class="overlay"><h3>Red Wheel</h3><p>Design Project</p></div>
+  </div>
+  <div class="sectione" data-group="event" onclick="goToDetail('music-life')">
+    <img src="images/portfolio/lamp.jpg" alt="Music Life">
+    <div class="overlay"><h3>Music Life</h3><p>Event Project</p></div>
+  </div>
+  <div class="sectione" data-group="digital" onclick="goToDetail('digital-space')">
+    <img src="images/portfolio/lamp.jpg" alt="Digital Space">
+    <div class="overlay"><h3>Digital Space</h3><p>Digital Marketing</p></div>
+  </div>
+  <div class="sectione" data-group="design" onclick="goToDetail('creative-show')">
+    <img src="images/portfolio/lamp.jpg" alt="Creative Show">
+    <div class="overlay"><h3>Creative Show</h3><p>Design Exhibition</p></div>
+  </div>
+</div>
+
+<!-- SCRIPT -->
+<script>
+  // Slideshow
+  document.querySelectorAll(".project-item").forEach(project => {
+    const imageContainer = project.querySelector(".project-images");
+    const infoSlides = project.querySelectorAll(".info-slide");
+    const imagePaths = JSON.parse(imageContainer.getAttribute("data-images"));
+    let currentIndex = 0;
+
+    imagePaths.forEach((src, i) => {
+      const img = document.createElement("img");
+      img.src = src;
+      if (i === 0) img.classList.add("active");
+      imageContainer.appendChild(img);
+    });
+
+    const imgs = imageContainer.querySelectorAll("img");
+
+    setInterval(() => {
+      imgs[currentIndex].classList.remove("active");
+      infoSlides[currentIndex].classList.remove("active");
+      currentIndex = (currentIndex + 1) % imgs.length;
+      imgs[currentIndex].classList.add("active");
+      infoSlides[currentIndex].classList.add("active");
+    }, 2500);
+  });
+
+  // Filter logic
+  const filterButtons = document.querySelectorAll(".filter-btn");
+  const projectSections = document.querySelectorAll(".sectione");
+
+  filterButtons.forEach(button => {
+    button.addEventListener("click", () => {
+      filterButtons.forEach(btn => btn.classList.remove("active"));
+      button.classList.add("active");
+      const filter = button.getAttribute("data-filter");
+
+      projectSections.forEach(section => {
+        const group = section.getAttribute("data-group");
+        section.style.display = (filter === "all" || filter === group) ? "block" : "none";
+      });
+    });
+  });
+
+  function goToDetail(projectId) {
+    window.location.href = `project-detail.html?project=${projectId}`;
+  }
+</script>
+
+<footer style="text-align: center; padding: 40px 20px; background: #1a1a1a; margin-top: 60px;">
+  <h3 style="color: var(--text-main); margin-bottom: 20px;">Suivez-nous</h3>
+  <div style="font-size: 24px; display: flex; justify-content: center; gap: 20px;">
+    <a href="https://wa.me/212600000000" target="_blank" style="color: #25d366;"><i class="fab fa-whatsapp"></i></a>
+    <a href="https://facebook.com/yourpage" target="_blank" style="color: #3b5998;"><i class="fab fa-facebook"></i></a>
+    <a href="https://instagram.com/yourpage" target="_blank" style="color: #e1306c;"><i class="fab fa-instagram"></i></a>
+    <a href="mailto:youremail@example.com" style="color: #f1f1f1;"><i class="fas fa-envelope"></i></a>
+  </div>
+</footer>
+</body>
+</html>
