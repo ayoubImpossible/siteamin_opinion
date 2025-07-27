@@ -290,54 +290,84 @@ Nous plaçons la satisfaction client au centre de nos priorités, en respectant 
 
 </section>
 
-  <div class="projet-container">
-  <div class="sectione" data-title="Red Wheel" data-desc="Project Red Wheel Description" onclick="goToDetail('red-wheel')">
-    <img src="images/portfolio/red-wheel.jpg" alt="Red Wheel">
+
+
+
+
+
+
+
+
+
+
+
+
+ <div class="row" style="height: 170px;padding: 30px;">
+    <div class="section-title" data-num="03" data-aos="fade-up">
+      <h3 style="color: rgb(134, 134, 134);" class="h6">Projets</h3>
+    </div>
+  </div>
+  <div class="projet-container" style="height: 350px;margin-top: 70px;">
+  <div class="sectione"  data-title="Red Wheel" data-desc="Project Red Wheel Description" onclick="goToDetail('Finale CC')">
+    <img src="images/Evenmentiel sportif/Finale CC/IMG_5474.jpg" alt="Red Wheel">
     <div class="overlay">
-      <h3>Red Wheel</h3>
-      <p>Project Red Wheel Description</p>
+      <h3>Finale CC</h3>
+      <p>Finale Caf Confederation Cup</p>
     </div>
   </div>
 
-  <div class="sectione" data-title="Music Life" data-desc="Project Music Life Description" onclick="goToDetail('music-life')">
-    <img src="images/portfolio/lamp.jpg" alt="Music Life">
+  <div class="sectione" data-title="Music Life" data-desc="Project Music Life Description" onclick="goToDetail('Conf inter migration')">
+    <img src="images/Evenementiel/Conf inter migration/IMG_8551.jpg" alt="Music Life">
     <div class="overlay">
-      <h3>Music Life</h3>
-      <p>Project Music Life Description</p>
+      <h3>Conf inter migration</h3>
+      <p>Global Compact For Migration</p>
     </div>
   </div>
-<div class="sectione" data-title="Red Wheel" data-desc="Project Red Wheel Description" onclick="goToDetail('red-wheel')">
-    <img src="images/portfolio/red-wheel.jpg" alt="Red Wheel">
+<div class="sectione"   data-title="Red Wheel" data-desc="Project Red Wheel Description" onclick="goToDetail('CAN 2021 Cameroun')">
+    <img  src="images/Evenmentiel sportif/CAN 2021 Cameroun/101.jpg" alt="Red Wheel">
     <div class="overlay">
-      <h3>Red Wheel</h3>
-      <p>Project Red Wheel Description</p>
+      <h3>CAN 2021 Cameroun</h3>
+      <p>Africa Cup Of Nations Cameroon 2021</p>
     </div>
   </div>
-
-  <div class="sectione" data-title="Music Life" data-desc="Project Music Life Description" onclick="goToDetail('music-life')">
-    <img src="images/portfolio/lamp.jpg" alt="Music Life">
+<div class="sectione" style="width: 400px;"  data-title="Red Wheel" data-desc="Project Red Wheel Description" onclick="goToDetail('Jeux panafricain')">
+    <img src="images/Evenmentiel sportif/Jeux panafricain/IMG_5388.JPG" alt="Red Wheel">
     <div class="overlay">
-      <h3>Music Life</h3>
-      <p>Project Music Life Description</p>
-    </div>
-  </div>
-  <div class="sectione" data-title="Red Wheel" data-desc="Project Red Wheel Description" onclick="goToDetail('red-wheel')">
-    <img src="images/portfolio/red-wheel.jpg" alt="Red Wheel">
-    <div class="overlay">
-      <h3>Red Wheel</h3>
-      <p>Project Red Wheel Description</p>
+      <h3>Jeux panafricain</h3>
+      <p>11èmes Jeux Africains</p>
     </div>
   </div>
 
-  <div class="sectione" data-title="Music Life" data-desc="Project Music Life Description" onclick="goToDetail('music-life')">
-    <img src="images/portfolio/lamp.jpg" alt="Music Life">
-    <div class="overlay">
-      <h3>Music Life</h3>
-      <p>Project Music Life Description</p>
-    </div>
-  </div>
+
+
+
   <!-- Add more sections similarly... -->
 </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     <!-- clients
@@ -871,6 +901,12 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }, 50); // adjust for scroll speed (higher = slower)
 });
+
+
+function goToDetail(projectId) {
+  window.location.href = `project-detail.html?project=${encodeURIComponent(projectId)}`;
+}
+
 </script>
 </body>
 
