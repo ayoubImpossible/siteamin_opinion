@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comparateur Offres d'Emploi</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 15px;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 25px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 1.8em;
+            margin-bottom: 8px;
+        }
+        
+        .content {
+            padding: 20px;
+        }
+        
+        .add-job {
+            background: #28a745;
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1em;
+            font-weight: 600;
+            margin-bottom: 20px;
+            transition: all 0.3s;
+        }
+        
+        .add-job:hover {
+            background: #218838;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(40, 167, 69, 0.3);
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            border-radius: 10px;
+            overflow: hidden;
+            font-size: 0.9em;
+        }
+        
+        thead {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        
+        th {
+            padding: 12px 10px;
+            text-align: left;
+            font-weight: 600;
+            font-size: 0.85em;
+            text-transform: uppercase;
+        }
+        
+        td {
+            padding: 12px 10px;
+            border-bottom: 1px solid #e8e8e8;
+            vertical-align: top;
+            line-height: 1.5;
+        }
+        
+        tbody tr:hover {
+            background: #f8f9ff;
+        }
+        
+        .score {
+            font-size: 1.8em;
+            font-weight: bold;
+            text-align: center;
+        }
+        
+        .score-high { color: #28a745; }
+        .score-medium { color: #ffc107; }
+        .score-low { color: #dc3545; }
+        
+        .badge {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 5px;
+            font-size: 0.8em;
+            font-weight: 600;
+            margin: 2px;
+            white-space: nowrap;
+        }
+        
+        .badge-success { background: #d4edda; color: #155724; }
+        .badge-warning { background: #fff3cd; color: #856404; }
+        .badge-danger { background: #f8d7da; color: #721c24; }
+        .badge-info { background: #d1ecf1; color: #0c5460; }
+        
+        ul {
+            margin: 5px 0;
+            padding-left: 15px;
+        }
+        
+        li {
+            margin: 3px 0;
+            font-size: 0.9em;
+        }
+        
+        .job-link {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        
+        .job-link:hover {
+            text-decoration: underline;
+        }
+        
+        .compact-list {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .compact-list li:before {
+            content: "• ";
+            color: #667eea;
+            font-weight: bold;
+            margin-right: 5px;
+        }
+        
+        .strengths { color: #28a745; }
+        .weaknesses { color: #dc3545; }
+        
+        @media (max-width: 1200px) {
+            table {
+                font-size: 0.8em;
+            }
+            th, td {
+                padding: 8px 6px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📊 Comparateur d'Offres d'Emploi - Ayoub Zamani</h1>
+            <p>Développeur Full Stack | 4+ ans d'expérience</p>
+        </div>
+        
+        <div class="content">
+            <button class="add-job" onclick="alert('Copiez-collez une nouvelle offre d\'emploi ici')">➕ Ajouter une Offre</button>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th style="width: 12%;">Poste & Entreprise</th>
+                        <th style="width: 10%;">Localisation & Type</th>
+                        <th style="width: 8%;">Score Match</th>
+                        <th style="width: 15%;">Points Forts Ayoub</th>
+                        <th style="width: 15%;">Points Faibles Ayoub</th>
+                        <th style="width: 15%;">Compétences Clés Requises</th>
+                        <th style="width: 10%;">Salaire & Avantages</th>
+                        <th style="width: 8%;">Action</th>
+                        <th style="width: 7%;">Lien</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Offre 1: FinOps AWS -->
+                    <tr>
+                        <td>
+                            <strong>Spécialiste FinOps AWS</strong><br>
+                            <span style="color: #666;">Promutuel Assurance</span><br>
+                            <span class="badge badge-info">R-0000000094</span><br>
+                            <small>Publié: 28j</small>
+                        </td>
+                        <td>
+                            📍 Québec / Longueuil<br>
+                            <span class="badge badge-warning">Hybride</span><br>
+                            <span class="badge badge-info">Temps plein</span>
+                        </td>
+                        <td>
+                            <div class="score score-medium">55%</div>
+                            <span class="badge badge-warning">Formation requise</span>
+                        </td>
+                        <td>
+                            <ul class="compact-list strengths">
+                                <li>Full Stack expert</li>
+                                <li>Gestion financière SAP</li>
+                                <li>Automatisation (-40%)</li>
+                                <li>Leadership équipes</li>
+                                <li>Agile/Scrum</li>
+                                <li>Power BI dashboards</li>
+                            </ul>
+                        </td>
+                        <td>
+                            <ul class="compact-list weaknesses">
+                                <li>❌ Zéro exp. FinOps</li>
+                                <li>❌ Aucune cert. AWS</li>
+                                <li>❌ Pas Terraform/CloudFormation</li>
+                                <li>❌ Outils FinOps inconnus</li>
+                                <li>⚠️ Français intermédiaire</li>
+                                <li>❌ Pas 5 ans FinOps</li>
+                            </ul>
+                        </td>
+                        <td>
+                            <span class="badge badge-danger">AWS Expert</span>
+                            <span class="badge badge-danger">FinOps</span>
+                            <span class="badge badge-danger">Terraform</span>
+                            <span class="badge badge-warning">CI/CD</span>
+                            <span class="badge badge-danger">CloudFormation</span>
+                            <span class="badge badge-danger">Cost Explorer</span>
+                            <span class="badge badge-warning">5+ ans exp.</span>
+                            <span class="badge badge-info">Français pro</span>
+                        </td>
+                        <td>
+                            💰 Non spécifié<br>
+                            ✅ Horaire flexible<br>
+                            ✅ Congés mobiles<br>
+                            ✅ Télémédecine<br>
+                            ✅ Retraite<br>
+                            ✅ Assurances<br>
+                            ✅ Compte Flexi
+                        </td>
+                        <td>
+                            <span class="badge badge-danger">❌ Pas prêt</span><br>
+                            <strong>Formation 3 mois:</strong><br>
+                            • AWS Cloud Practitioner<br>
+                            • FinOps Foundation<br>
+                            • Terraform<br>
+                            • Français intensif
+                        </td>
+                        <td>
+                            <a href="https://promutuel.wd3.myworkdayjobs.com/fr-CA/promutuel_carrieres/details/Analyste-Infonuagique-AWS_R-0000000094?jobFamilyGroup=8374fbcce28810014c3b76430ca80000" target="_blank" class="job-link">🔗 Voir</a>
+                        </td>
+                    </tr>
+                    
+                    <!-- Ligne vide pour ajouter d'autres offres -->
+                    <tr style="background: #f8f9ff;">
+                        <td colspan="9" style="text-align: center; padding: 20px; color: #666;">
+                            <strong>➕ Ajoutez d'autres offres d'emploi pour comparer</strong><br>
+                            <small>Copiez-collez le texte de l'offre et je l'ajouterai automatiquement au tableau</small>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <div style="margin-top: 30px; padding: 20px; background: #f8f9ff; border-radius: 10px; border-left: 5px solid #667eea;">
+                <h3 style="color: #667eea; margin-bottom: 15px;">📌 Légende des Scores</h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px;">
+                    <div>
+                        <span class="score score-high">75%+</span>
+                        <p style="margin-top: 5px; font-size: 0.9em;">✅ Excellent - Postulez maintenant</p>
+                    </div>
+                    <div>
+                        <span class="score score-medium">55-74%</span>
+                        <p style="margin-top: 5px; font-size: 0.9em;">⚠️ Moyen - Formation nécessaire</p>
+                    </div>
+                    <div>
+                        <span class="score score-low">&lt;55%</span>
+                        <p style="margin-top: 5px; font-size: 0.9em;">❌ Faible - Non recommandé</p>
+                    </div>
+                </div>
+            </div>
+            
+          
+        </div>
+    </div>
+</body>
+</html>
